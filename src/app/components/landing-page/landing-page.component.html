@@ -1,0 +1,6 @@
+<h2>En cines</h2>
+<mat-spinner *ngIf="!peliculasCines"></mat-spinner>
+    <app-listado-peliculas (borrado)="borrado()" [peliculas]="peliculasCines"></app-listado-peliculas>
+    
+    <h2>Proximos estrenos</h2>
+    <app-listado-peliculas *ngIf="peliculasEstreno" (borrado)="borrado()" [peliculas]="peliculasEstreno"></app-listado-peliculas>

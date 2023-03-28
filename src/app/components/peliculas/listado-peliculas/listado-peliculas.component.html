@@ -1,0 +1,21 @@
+<div class="peliculas-contenedor" *ngIf="peliculas">
+    <div *ngFor="let pelicula of peliculas; let i = index" class="pelicula-contenedor">
+        <a>
+            <img [routerLink]="'/pelicula/' + pelicula.id" [src]="pelicula.poster" alt="Poster">
+        </a>
+        <p>
+            <a>{{pelicula.titulo}}</a>
+        </p>
+        <app-autorizado [rol]="'admin'">
+            <ng-container autorizado>
+                <div *ngIf="edicion">
+                    <a mat-flat-button routerLink="/peliculas/editar/{{pelicula.id}}" color="primary">Editar</a>
+                    <button mat-flat-button color="warn" type="button" [swal]="{title: 'Confirmacion', text: 'Esta seguro que desea eliminar el registro?', showCancelButton: true, confirmButtonColor: '#3F51B5', cancelButtonText: 'Cancelar'}" (confirm)="eliminarPelicula(pelicula.id)">Borrar</button>
+                </div>
+            </ng-container>
+        </app-autorizado>
+    </div>
+</div>
+<ng-container *ngIf="peliculas && peliculas.length == 0">
+    No hay peliculas para mostrar
+</ng-container>
